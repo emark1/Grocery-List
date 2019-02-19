@@ -7,15 +7,15 @@ Press 2 to edit an existing list.
 Press 3 to select a list to display.
 Press Q to quit.""")
 
-def edit_menu():
-    print("")
+#def edit_menu():
+ #   print("")
 
 list_array = []
 
 class List:
     def __init__(self,store):
         self.store = store
-        self.groceryitems = []
+        self.items_array = []
     
 class GroceryItem():
     def __init__(self,item,price,quantity):
@@ -33,9 +33,17 @@ def create_list():
 def edit_list():
     display_list()  
     select_list = ""
-    select_list = input("Select list to edit: ")
-    item_input = input("Enter item to add to the list: ")
-    .groceryitems.append(item_input)
+    item_input = ""
+    price_input = ""
+    quantity_input = ""
+    select_list = int(input("Select list to edit: "))
+    item_input = input("Enter item name to add to the list: ")
+    price_input = float(input("Enter the price of the item: "))
+    quantity_input = int(input("Enter the quantity of the item: "))
+    new_item = GroceryItem(item_input,price_input,quantity_input)
+    list_array[select_list-1].items_array.append(new_item)
+    #.groceryitems.append(item_input,price_input,quantity_input)
+
 
 def display_list():
     #list_selection = input("Enter number of the list you wish to view: ")
@@ -46,10 +54,11 @@ def display_list():
     for store in list_array:
         print(f'{list_array.index(store) + 1} - {store.store}')
 
-##############
-
-
-
+def display_full():
+    for store in list_array:
+        print(f'{list_array.index(store) + 1} - {store.store}')
+    for item in store.items_array:
+        print(f'{store.items_array}')
 
 user_input = ""
 
@@ -61,4 +70,4 @@ while user_input != "q":
     elif user_input == "2":
         edit_list()
     elif user_input == "3":
-        display_list()
+        display_full()
